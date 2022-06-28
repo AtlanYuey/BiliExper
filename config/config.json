@@ -5,7 +5,7 @@
     "version": "1.2.0", // 配置文件版本,严禁修改
     "default": {
         "vip_task": { // 任务:1号领取大会员B币劵优惠券，28号花费剩余B币劵，下面为本功能详细配置
-            "enable": false, //任务开关，值为true或false分别代表开启和关闭
+            "enable": true, //任务开关，值为true或false分别代表开启和关闭
             "BpCharge": { // 设置花费B币劵的方式，若不花费请删除9-13行
                 "charge": 5, // 值为整数，给自己充电，花费劵的数量为2，不充电直接删除本行
                 "Bp2Gold": 0 // 值为整数，兑换金瓜子，花费劵的数量为3，不兑换直接删除本行
@@ -13,7 +13,7 @@
             }
         },
         "group_sign_task": false, // 任务:应援团签到，值为true或false分别代表开启和关闭
-        "xliveSign_task": false, // 任务:直播签到，值为true或false分别代表开启和关闭
+        "xliveSign_task": true, // 任务:直播签到，值为true或false分别代表开启和关闭
         "xlive_bag_send_task": { // 任务:送出即将到期的直播间背包里的礼物，值为true或false分别代表开启和关闭，下面为本功能详细配置
             "enable": false, //任务开关，值为true或false分别代表开启和关闭
             "room_id": 21652717, // 送给白神遥 // 值为整数，送礼物的直播间，0为随机取直播间
@@ -85,9 +85,9 @@
             "run_once": true //参与一次即退出，值为true或false，值为false才会等待超时退出(Actions上默认)，云函数上推荐设置为true并每隔10分钟调用此功能
         },
         "coin_task": { // 任务:每日投币获取经验，下面为本功能详细配置
-            "enable": false, // 任务开关，值为true或false分别代表开启和关闭
-            "num": 0, // 投币数量，值为整数(范围0-5)，如果当天已经投币超过这个数量则不会继续投币否则补齐剩余数量，硬币不够则不会投币
-            "target_exp": 28800, // 目标经验值，值为整数，达到经验目标则停止投币
+            "enable": true, // 任务开关，值为true或false分别代表开启和关闭
+            "num": 5, // 投币数量，值为整数(范围0-5)，如果当天已经投币超过这个数量则不会继续投币否则补齐剩余数量，硬币不够则不会投币
+            "target_exp": 60000, // 目标经验值，值为整数，达到经验目标则停止投币
             "do_task": [
                 2,
                 1
@@ -126,8 +126,8 @@
             /*-----------------------------end---------------------------------------------------- */
         },
         "watch_task": false, // 任务:模拟观看一个随机视频(加经验值，会留下观看历史记录)，值为true或false分别代表开启和关闭，删除75行(即本行)可关闭本任务
-        "share_task": false, // 任务:模拟分享一个随机视频(加经验值，并不会真的分享)，值为true或false分别代表开启和关闭，删除76行(即本行)可关闭本任务
-        "silver2coin_task": false, // 任务:银瓜子兑换硬币，值为true或false分别代表开启和关闭，删除77行(即本行)可关闭本任务
+        "share_task": true, // 任务:模拟分享一个随机视频(加经验值，并不会真的分享)，值为true或false分别代表开启和关闭，删除76行(即本行)可关闭本任务
+        "silver2coin_task": true, // 任务:银瓜子兑换硬币，值为true或false分别代表开启和关闭，删除77行(即本行)可关闭本任务
         "lottery_task": { // 任务:动态抽奖转发评论点赞
             "enable": false, //任务开关，值为true或false分别代表开启和关闭
             "reply": [
@@ -198,13 +198,13 @@
                 30
             ] // 限制删除动态的时间区间，值为二维整数数组(单位天)，这里表示只对7天之前30天以内的动态执行清理，天数按执行当天24点向前计算
         },
-        "manga_sign_task": false, // 任务:漫画app签到
+        "manga_sign_task": true, // 任务:漫画app签到
         "exchangeCoupons_task": { // 任务:漫画积分兑换福利券，请保证程序在中午12点0分30秒左右启动，其他时候启动本功能几乎都会兑换失败
             "enable": false, // 任务开关，值为true或false分别代表开启和关闭
             "num": 0 // 兑换数量，值为整数
         },
         "manga_vip_reward_task": { // 任务:领取每月大会员漫画权益(漫读劵)
-            "enable": false, // 任务开关，值为true或false分别代表开启和关闭
+            "enable": true, // 任务开关，值为true或false分别代表开启和关闭
             "days": [
                 1
             ] // 每月尝试领取的日期,值为整数数组,指定多个日期会重复尝试领取
@@ -329,9 +329,9 @@
     "users": [
         // { //账户数组，每个账户包含一个cookieDatas和tasks参数，使用actions的用户可以使用secrets(biliconfig)指定cookie而不用本参数
         //     "cookieDatas": { // cookie获取方式见项目说明
-        //         "SESSDATA": "账号SESSDATA",
-        //         "bili_jct": "账号bili_jct",
-        //         "DedeUserID": "账号uid"
+        //         "SESSDATA": "267f615f%2C1661161221%2Ced42c*21",
+        //         "bili_jct": "e8e6cfc2bf96094c1650e5ab47232b6c",
+        //         "DedeUserID": "32656878"
         //     },
         //     "show_name": "", /* 昵称，用于日志，消息推送，填空则默认使用账号昵称，在actions上不想显示真实昵称时使用
         // /* 下面tasks参数与最上面default参数作用相同，但优先级更高，用于定制每个账号的参数，
